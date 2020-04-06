@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+// Service
+import { Feature, FeatureService } from '../../feature.service';
 
 @Component({
   selector: 'app-side-nav',
@@ -7,7 +9,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SideNavComponent implements OnInit {
   showMenu = false;
-  constructor() {}
+  features: Feature[] = [];
+  errorMessage = '';
 
-  ngOnInit() {}
+  constructor(private featureService: FeatureService) {}
+
+  ngOnInit() {
+    this.featureService.getFeatures().subscribe({
+      next: features => {
+        this.features = features;
+      },
+      error: err => this.errorMessage = err
+    });
+  }
 }

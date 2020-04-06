@@ -1,5 +1,5 @@
-<mat-nav-list>
-  <a mat-list-item [routerLinkActive]="'active'" [routerLink]="['/books']">
-    <mat-icon class="sidenav-icon">menu_book</mat-icon>Books
+<mat-nav-list *ngFor="let feature of features">
+  <a mat-list-item [routerLinkActive]="'active'" [routerLink]="[feature.path]">
+    <mat-icon class="sidenav-icon">{{feature.icon}}</mat-icon> {{feature.name}}
   </a>
 </mat-nav-list>
